@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const getLocalTheme = () => {
   const theme = localStorage.getItem("theme");
@@ -29,33 +30,37 @@ const Navbar = () => {
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
 
-  console.log(theme);
-
   return (
-    <div className="navbar bg-base-100 shadow-lg px-4 fixed z-50">
+    <div className="fixed z-50 px-4 shadow-lg navbar bg-base-100">
       <div className="flex-1">
-        <a className="btn btn-ghost gap-0 text-secondary normal-case text-2xl">
+        <a className="gap-0 text-2xl normal-case btn btn-ghost text-secondary">
           Byte<span className="text-primary">Blaze</span>
         </a>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
-          <li className="font-bold text-primary">
-            <a>Home</a>
+        <ul className="px-1 menu menu-horizontal">
+          <li>
+            <Link to="/" className="font-bold text-primary">
+              Home
+            </Link>
           </li>
-          <li className="font-bold">
-            <a>Blogs</a>
+          <li>
+            <Link to="/blogs" className="font-bold">
+              Blogs
+            </Link>
           </li>
-          <li className="font-bold">
-            <a>Bookmarks</a>
+          <li>
+            <Link to="/bookmarks" className="font-bold">
+              Bookmarks
+            </Link>
           </li>
         </ul>
-        <label className="cursor-pointer grid place-items-center">
+        <label className="grid cursor-pointer place-items-center">
           <input
             type="checkbox"
             onChange={handleToggleTheme}
             checked={theme === "light" ? false : true}
-            className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2"
+            className="col-span-2 col-start-1 row-start-1 toggle theme-controller bg-base-content"
           />
           <svg
             className="col-start-1 row-start-1 stroke-base-100 fill-base-100"
